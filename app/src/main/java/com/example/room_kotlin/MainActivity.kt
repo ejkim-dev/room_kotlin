@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
 
         val db = Room.databaseBuilder(
                 applicationContext,
-                AppDatabase::class.java, "database-name"
+                JavaAppDatabase::class.java, "database-name"
         ).build()
 
         db.todoDao().getAll().toString()
