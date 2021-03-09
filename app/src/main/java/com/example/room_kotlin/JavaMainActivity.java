@@ -29,23 +29,17 @@ public class JavaMainActivity extends AppCompatActivity {
                 .allowMainThreadQueries() // 메인 스레드에서 DB 동작하게 함
                 .build();
 
+        // 관찰하다가 UI 갱신
         // livedata 관찰자 설정 -> 람다로 변경(alt + enter)
         javaAppDatabase.todoDao().getAll().observe(this, javaTodos -> {
 
+            //getAll()을 했을 때 결과 변경될 때마다 javaTodos 인자로 들어오고 아래 코드를 수행하면 됨
+            //todoDao() 를 통해 데이터를 얻어올 수 있다. / getAll() : 모든 데이터
+            mResultTextView.setText(javaTodos.toString()); // 이 코드는 계속 사용될 수 있으니 livedata를 사용하여 자동으로 갱신되게 할 예정
         });
 
-        //todoDao() 를 통해 데이터를 얻어올 수 있다. / getAll() : 모든 데이터
-        mResultTextView.setText(javaAppDatabase.todoDao().getAll().toString()); // 이 코드는 계속 사용될 수 있으니 livedata를 사용하여 자동으로 갱신되게 할 예정
-
-        findViewById(R.id.add_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                javaAppDatabase.todoDao().insert(new JavaTodo(mTodoEditText.getText().toString()));
-                mResultTextView.setText(javaAppDatabase.todoDao().getAll().toString());
-
-            }
-        });
+        //버튼 클릭시 DB 에 insert
+        findViewById(R.id.add_button).setOnClickListener(v -> javaAppDatabase.todoDao().insert(new JavaTodo(mTodoEditText.getText().toString())));
 
     }
 }
