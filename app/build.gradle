@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-kapt'
+    id 'kotlin-kapt' // kapt 사용을 위한 플러그인 : 코틀린은 kapt를 사용해야함
 }
 
 android {
