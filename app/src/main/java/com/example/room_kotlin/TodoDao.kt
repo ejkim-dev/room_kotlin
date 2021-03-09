@@ -8,7 +8,7 @@ interface TodoDao {
     fun getAll(): List<Todo>
 
     @Insert
-    fun insertAll(todo: Todo)
+    fun insert(todo: Todo)
 
     @Update
     fun update(todo: Todo)
