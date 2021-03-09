@@ -26,8 +26,9 @@ public class JavaMainActivity extends AppCompatActivity {
                 .allowMainThreadQueries() // 메인 스레드에서 DB 동작하게 함
                 .build();
 
-        //todoDao() 를 통해 데이터를 얻어올 수 있다. / getAll() : 모든 데이
-        mResultTextView.setText(javaAppDatabase.todoDao().getAll().toString());
+
+        //todoDao() 를 통해 데이터를 얻어올 수 있다. / getAll() : 모든 데이터
+        mResultTextView.setText(javaAppDatabase.todoDao().getAll().toString()); // 이 코드는 계속 사용될 수 있으니 livedata를 사용하여 자동으로 갱신되게 할 예정
 
         findViewById(R.id.add_button).setOnClickListener(new View.OnClickListener() {
             @Override
