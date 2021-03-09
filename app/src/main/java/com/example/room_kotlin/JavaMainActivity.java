@@ -29,12 +29,9 @@ public class JavaMainActivity extends AppCompatActivity {
                 .allowMainThreadQueries() // 메인 스레드에서 DB 동작하게 함
                 .build();
 
-        // livedata 관찰자 설정
-        javaAppDatabase.todoDao().getAll().observe(this, new Observer<List<JavaTodo>>() {
-            @Override
-            public void onChanged(List<JavaTodo> javaTodos) {
+        // livedata 관찰자 설정 -> 람다로 변경(alt + enter)
+        javaAppDatabase.todoDao().getAll().observe(this, javaTodos -> {
 
-            }
         });
 
         //todoDao() 를 통해 데이터를 얻어올 수 있다. / getAll() : 모든 데이터
