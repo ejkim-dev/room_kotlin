@@ -1,0 +1,18 @@
+package com.example.room_kotlin
+
+import androidx.room.*
+
+@Dao
+interface TodoDao {
+    @Query("SELECT * FROM Todo")
+    fun getAll(): List<Todo>
+
+    @Insert
+    fun insertAll(todo: Todo)
+
+    @Update
+    fun update(todo: Todo)
+
+    @Delete
+    fun delete(todo: Todo)
+}
