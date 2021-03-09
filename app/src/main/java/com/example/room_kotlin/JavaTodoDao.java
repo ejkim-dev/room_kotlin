@@ -9,6 +9,7 @@ import androidx.room.Update;
 
 import java.util.List;
 
+// JavaTodo 객체를 관찰하고 있다가 변경 사항이 생기면 자동으로 업뎃이 되게 할 예정
 @Dao
 public interface JavaTodoDao {
     @Query("SELECT * FROM JavaTodo")
