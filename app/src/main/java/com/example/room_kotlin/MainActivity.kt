@@ -3,6 +3,7 @@ package com.example.room_kotlin
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import androidx.room.Room
 import com.example.room_kotlin.databinding.ActivityMainBinding
 
@@ -22,12 +23,13 @@ class MainActivity : AppCompatActivity() {
         ).allowMainThreadQueries()
             .build()
 
+        db.todoDao().getAll().observe(this, Observer {
+            activityMainBinding.resultText.text = it.toString()
+        })
 
-        activityMainBinding.resultText.text = db.todoDao().getAll().toString()
 
         activityMainBinding.addButton.setOnClickListener{
            db.todoDao().insert(Todo(activityMainBinding.todoEdit.text.toString()))
-            activityMainBinding.resultText.text = db.todoDao().getAll().toString()
         }
 
 
