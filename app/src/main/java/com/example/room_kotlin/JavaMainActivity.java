@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.room_kotlin.databinding.ActivityJavaMainBinding;
 import com.example.room_kotlin.databinding.ActivityMainBinding;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class JavaMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_java_main);를 아래와 같이 바꿈. binding 객체는 xml에 대한 정보를 다 갖고있
-        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_java_main);
+        ActivityJavaMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_java_main);
 
         // 원래 DB가 background에서 동작하지 않으면 에러가 나지만 테스트 용이니 메인스레드에서 작성
         final JavaAppDatabase javaAppDatabase = Room.databaseBuilder(this, JavaAppDatabase.class, "java-todo-db")
