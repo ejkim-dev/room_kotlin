@@ -27,7 +27,7 @@ public class JavaMainActivity extends AppCompatActivity {
         //setContentView(R.layout.activity_java_main);를 아래와 같이 바꿈. binding 객체는 xml에 대한 정보를 다 갖고있
         ActivityJavaMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_java_main);
 
-        JavaMainViewModel viewModel = new ViewModelProvider(this).get(JavaMainViewModel.class);
+        JavaMainViewModel viewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(getApplication())).get(JavaMainViewModel.class);
 
         // 관찰하다가 UI 갱신
         // livedata 관찰자 설정 -> 람다로 변경(alt + enter)
