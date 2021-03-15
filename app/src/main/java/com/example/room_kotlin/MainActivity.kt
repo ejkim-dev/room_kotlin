@@ -4,8 +4,11 @@ import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
 import com.example.room_kotlin.databinding.ActivityMainBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,8 +23,7 @@ class MainActivity : AppCompatActivity() {
         val db = Room.databaseBuilder(
                 applicationContext,
                 AppDatabase::class.java, "database-name"
-        ).allowMainThreadQueries()
-            .build()
+        ).build()
 
         db.todoDao().getAll().observe(this, Observer {
             activityMainBinding.resultText.text = it.toString()
@@ -29,7 +31,10 @@ class MainActivity : AppCompatActivity() {
 
 
         activityMainBinding.addButton.setOnClickListener{
-           db.todoDao().insert(Todo(activityMainBinding.todoEdit.text.toString()))
+            //Dispatchers.IO -> 백그라운드 스레드
+            lifecycleScope.launch(Dispatchers.IO){
+                db.todoDao().insert(Todo(activityMainBinding.todoEdit.text.toString()))
+            }
         }
 
 
